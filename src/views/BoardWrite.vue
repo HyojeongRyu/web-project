@@ -30,7 +30,7 @@
       </div>
 
       <div class="content-item">
-        <v-file-input @change="selectFile" label="첨부파일" outlined dense>
+        <v-file-input v-model="files" multiple label="첨부파일" outlined dense>
         </v-file-input>
       </div>
 
@@ -112,9 +112,9 @@ export default {
     alertDialog,
   },
   computed: {
-    userID() {
-      return this.$store.state.userID;
-    },
+    // userID() {
+    //   return this.$store.state.userID;
+    // },
   },
   data() {
     return {
@@ -135,7 +135,7 @@ export default {
       ],
       searchResult: [],
       selectedCafe: [],
-      image: "",
+      files: null,
       formData: {
         boardName: "",
         boardContent: "",
@@ -145,8 +145,8 @@ export default {
         starMood: 0,
         cafeName: "",
         cafeAddress: "",
-        userID: "",
-        image: "",
+        userID: "yeojinny",
+        files: "",
       },
     };
   },
@@ -162,7 +162,7 @@ export default {
     },
     searchCafe() {
       //posg: const params = {search:{keyword:this.searchText}};
-      this.$http.get(`/api/search/?keyword=${this.searchText}`).then((res) => {
+      this.$axios.get(`/api/search/?keyword=${this.searchText}`).then((res) => {
         this.searchResult = res.data;
       });
     },
@@ -170,9 +170,6 @@ export default {
       this.$set(this.formData, "cafeAddress", this.selectedCafe[0].address);
       this.$set(this.formData, "cafeName", this.selectedCafe[0].title);
       this.searchDialog = false;
-    },
-    selectFile(file) {
-      this.formData.image = file;
     },
     isEmpty() {
       if (this.formData.boardName === "") {
@@ -199,18 +196,26 @@ export default {
 
       return false;
     },
+    /*
+    글쓰기 저장
+    */
     save() {
       //빈 항목이 존재한다면, 입력 알림
       if (this.isEmpty()) return;
 
-      //서버에 저장
+      //서버에 저장(이미지 저장을 위해 FormData객체 사용)
       let fd = new FormData();
+
       for (let key in this.formData) {
-        fd.append(key, this.formData[key]);
+        if (key === "files") {
+          //이미지 여러개를 전송할 때 아래와 같이 하나하나 append 해줘야한다.
+          for (let i in this.files) {
+            fd.append("files", this.files[i]);
+          }
+        } else fd.append(key, this.formData[key]);
       }
 
-      //사진 여러장 보내보기**
-      this.$http
+      this.$axios
         .post("/api/board/save", fd, {
           headers: {
             "Content-Type": "multipart/form-data",

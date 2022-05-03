@@ -1,26 +1,28 @@
 <template>
-    <div>
-        <Header/>
-        <HomeContent/>
-        <Footer/>
-    </div>
-
+  <main>
+    <section class="container">
+      <!-- 상단배너 & 검색창 & 인기태그 -->
+      <Hero />
+      <!-- 타입별 카페 리스트 -->
+      <PostList />
+    </section>
+  </main>
 </template>
 
 <script>
-    import Header from '@/components/common/Header.vue'
-    import HomeContent from '@/components/home/HomeContent.vue'
-    import Footer from '@/components/common/Footer.vue'
-
-    export default {
-        components:{
-            Header,
-            HomeContent,
-            Footer
-        }
-    }
+import Hero from "@/components/home/Hero.vue";
+import PostList from "@/components/home/PostList.vue";
+export default {
+  components: {
+    Hero,
+    PostList,
+  },
+};
 </script>
 
 <style scoped>
- 
+.container {
+  display: flex;
+  flex-direction: column;
+}
 </style>

@@ -1,44 +1,56 @@
 {
   "menu": {
-    "홈" : {
+    "홈": {
       "menuName": "홈",
-      "menuList":[{
-        "name":"Posts",
-        "to": "/"
-      },{
-        "name": "Comment",
-        "to": "/"
-      },{
-        "name": "Likes",    
-        "to": "/"
-      },{
-        "name": "Profile",
-        "to": "/"
-      }]
+      "menuList": [
+        {
+          "name": "Posts",
+          "to": "/board"
+        },
+        {
+          "name": "Comment",
+          "to": "/"
+        },
+        {
+          "name": "Likes",
+          "to": "/"
+        },
+        {
+          "name": "Profile",
+          "to": "/"
+        }
+      ]
     },
 
-    "고객센터" : {
+    "고객센터": {
       "menuName": "고객센터",
-      "menuList" :[{
-        "name":"자주 묻는 질문",
-        "to": "/"
-      },{
-        "name": "이용약관",
-        "to": "/"
-      },{
-        "name": "개인정보취급방침",    
-        "to": "/"
-      }]
+      "menuList": [
+        {
+          "name": "자주 묻는 질문",
+          "to": "/"
+        },
+        {
+          "name": "이용약관",
+          "to": "/"
+        },
+        {
+          "name": "개인정보취급방침",
+          "to": "/"
+        }
+      ]
     },
-    "기타":{
+    "기타": {
       "menuName": "기타",
-      "menuList" :[{
-        "name":"피카 소개",
-        "to": "/"
-      },{
-        "name": "공지사항",
-        "to": "/"
-      }]
+      "menuList": [
+        {
+          "name": "피카 소개",
+          "to": "/"
+        },
+        {
+          "name": "공지사항",
+          "to": "/"
+        }
+      ]
     }
   }
-} 
+}

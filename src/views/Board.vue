@@ -24,7 +24,7 @@
             <img
               @click="viewType = 'list'"
               class="form-type"
-              src="../image/list.png"
+              src="../assets/images/list.png"
               alt="list type"
             />
           </div>
@@ -32,7 +32,7 @@
             <img
               @click="viewType = 'gallery'"
               class="form-type"
-              src="../image/image.png"
+              src="../assets/images/image.png"
               alt="gallery type"
             />
           </div>
@@ -81,12 +81,12 @@
             <div class="info-item">
               <img
                 class="form-type like"
-                src="../image/thumb-up.png"
+                src="../assets/images/thumb-up.png"
                 alt="like icon"
               />{{ board.like }}
               <img
                 class="form-type comment"
-                src="../image/comment.png"
+                src="../assets/images/comment.png"
                 alt="like icon"
               />{{ board.comment }}
             </div>
@@ -121,12 +121,13 @@ import dayjs from "dayjs";
 
 export default {
   computed: {
-    loginState() {
-      return this.$store.state.loginState;
-    },
+    // loginState() {
+    //   return this.$store.state.loginState;
+    // },
   },
   data() {
     return {
+      loginState: true,
       tableHeader: ["제목", "카페이름", "위치", "좋아요", "댓글", "작성일"],
       listData: [],
       boardList: [],
@@ -142,7 +143,7 @@ export default {
     };
   },
   created() {
-    this.$http
+    this.$axios
       .get("/api/board")
       .then((res) => {
         this.boardList = res.data;
