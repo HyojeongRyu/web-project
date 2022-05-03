@@ -208,7 +208,7 @@ export default {
 
       for (let key in this.formData) {
         if (key === "files") {
-          //이미지 여러개를 전송할 때 아래와 같이 하나하나 append 해줘야함
+          //이미지 여러개를 전송할 때 아래와 같이 하나하나 append 해줘야한다.
           for (let i in this.files) {
             fd.append("files", this.files[i]);
           }
